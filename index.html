@@ -1,63 +1,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Socket.IO Example</title>
+    <title>Real-time temperature in browser</title>
 </head>
 <body>
-    <h1>Socket.IO Example</h1>
-    <h2>Current temperature</h2>
-    <p id="temperature"></p>
+    <h1>Using Raspberry Pi, Node.JS, Socket.IO to display real-time temperature in browser</h1>
+    <h2>Current temperature in C</h2>
+    <h2><p id="temperature"></p></h2>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
-
+   
     <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 
     <script>
-        $(function () {
-            $('#container').highcharts({
-
-                title: {
-                    text: 'Monthly Average Temperature',
-                    x: -20 //center
-                },
-                subtitle: {
-                    text: 'Source: WorldClimate.com',
-                    x: -20
-                },
-                yAxis: {
-                    title: {
-                        text: 'Temperature (°C)'
-                    },
-                    plotLines: [{
-                        value: 0,
-                        width: 1,
-                        color: '#808080'
-                    }]
-                },
-                tooltip: {
-                    valueSuffix: '°C'
-                },
-                legend: {
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'middle',
-                    borderWidth: 0
-                },
-                series: [{
-                    data: []
-                }]
-            });
-        });
-
-
-
-
-        var socket = io.connect('http://127.0.0.1:3000');
+        var socket = io.connect('http://67.187.127.240:3000');
         var temp = document.getElementById('temperature');
-        var temparr = [];
         socket.on('temperature',function(data){
             console.log('Connected');
             temperature.innerHTML = data.number
