@@ -14,7 +14,7 @@
     <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 
     <script>
-        var socket = io.connect('http://67.187.127.240:3000');
+        var socket = io.connect('http://192.168.1.1:3000');
         var temp = document.getElementById('temperature');
         socket.on('temperature',function(data){
             console.log('Connected');
